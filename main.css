@@ -18,5 +18,10 @@ h1 {
 canvas {
     margin: auto;
     display: block;
-    background-color: aqua;
+}
+
+.inputBox {
+    margin: auto;
+    display: block;
+    width: 50%;
 }

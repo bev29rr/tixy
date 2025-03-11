@@ -1,6 +1,8 @@
 :root {
     --background: #1b1b1b;
     --text: #ffffff;
+    --input: #747474;
+    --input-focus: #adadad;
 }
 
 body {
@@ -18,10 +20,29 @@ h1 {
 canvas {
     margin: auto;
     display: block;
+    padding: 40px 0;
+}
+
+.tixy-group p {
+    color: green;
+    font-size: 20px;
+    text-align: center;
 }
 
 .inputBox {
+    all: unset;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
     margin: auto;
     display: block;
     width: 50%;
+    background-color: var(--input);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
+}
+
+.inputBox:focus {
+    background-color: var(--input-focus);
 }

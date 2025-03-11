@@ -1,0 +1,22 @@
+:root {
+    --background: #1b1b1b;
+    --text: #ffffff;
+}
+
+body {
+    background-color: var(--background);
+    margin: 0 20%;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text);
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+}
+
+canvas {
+    margin: auto;
+    display: block;
+    background-color: aqua;
+}

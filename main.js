@@ -1,12 +1,18 @@
-const CIRCLE_AMOUNT = 8;
+let CIRCLE_AMOUNT = 16;
 
 const canvasPresets = [
     {
-        code: 'i == 0',
+        code: 'sin(t+x+y)',
         help: 'Haha, no!'
     }
 ];
 let intervalIds = {};
+
+const parseList = [
+    ['sin', 'Math.sin'],
+    ['cos', 'Math.cos'],
+    ['tan', 'Math.tan']
+];
 
 function initCanvas() {
     const tixyTray = document.getElementById('tixy-tray');
@@ -76,7 +82,18 @@ function drawCanvas(id, code, t) {
 }
 
 function tixy(t, i, x, y, code) {
-    return eval(code);
+    try {
+        return eval(parseCode(code));
+    } catch {
+        return false;
+    }
+}
+
+function parseCode(code) {
+    parseList.forEach((value, index) => {
+        code = code.replace(value[0], value[1]);
+    });
+    return code;
 }
 
 function beginClock(id, code) {
@@ -86,13 +103,19 @@ function beginClock(id, code) {
     }
 
     intervalIds[id] = setInterval(function() {
-        time += 0.1;
+        time += 0.01;
         document.getElementById(`timeDisplay${id}`).innerHTML = `t: ${time.toFixed(1)}`;
         drawCanvas(id, code, time);
-    }, 100);
+    }, 10);
 }
 
 
 document.addEventListener("DOMContentLoaded", function() {
     initCanvas();
+
+    const inputSlider = document.getElementById(`circle-amount`);
+    inputSlider.addEventListener('input', function() {
+        document.getElementById('circleAmountDisplay').innerHTML = `Circle Quantity: ${inputSlider.value}`;
+        CIRCLE_AMOUNT = parseInt(inputSlider.value, 10);
+    });
 });
